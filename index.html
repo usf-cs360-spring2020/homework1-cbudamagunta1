@@ -33,13 +33,6 @@
   <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <!-- TODO: Change link to repository homepage if needed -->
-        <!-- TODO: Change which navbar-item is-active if needed -->
-        <a class="navbar-item is-active" href="index.html">
-          <span class="icon"><i class="fas fa-home"></i></span>
-          <span>Home</span>
-        </a>
-
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -50,9 +43,13 @@
       <div id="main-menu" class="navbar-menu has-text-weight-medium">
         <!-- Left navbar items -->
         <div class="navbar-start">
-          <a class="navbar-item" href="#data" title="Data">
+          <a class="navbar-item" href="#visualizations" title="Visualizations">
             <span class="icon"><i class="fas fa-table"></i></span>
-            <span>Data</span>
+            <span>Visualizations</span>
+          </a>
+          <a class="navbar-item" href="#grade" title="Grade">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Grade</span>
           </a>
         </div>
 
@@ -85,7 +82,51 @@
           Air Traffic Passenger Statistics
         </p>
 
+        <h2 id="visualizations">Visualizations</h2>
+
         <p><img src="Vis1.png"></p>
+
+         <h2 id="grade">Grade</h2>
+
+         <!-- TODO: Remove custom style if no longer needed -->
+         <style>
+           table.grades tbody tr td:nth-child(1),
+           table.grades tbody tr td:nth-child(2) {
+             text-align: center;
+           }
+         </style>
+
+         <!-- https://bulma.io/documentation/elements/table/ -->
+         <table class="table is-hoverable is-bordered grades">
+           <thead>
+             <tr>
+               <th>Letter</th>
+               <th>Done?</th>
+               <th>Description</th>
+             </tr>
+           </thead>
+
+           <tbody>
+             <tr>
+               <td>C</td>
+               <td><i class="has-text-danger fas fa-check-circle"></i></td>
+               <td>Prototype 3 unique visualizations using Tableau Desktop.</td>
+             </tr>
+
+             <tr>
+               <td>B</td>
+               <td><i class="has-text-danger far fa-check-circle"></i></td>
+               <td>D-level requirements plus implement 1 of the Tableau prototypes in D3 version 5.</td>
+             </tr>
+
+             <tr>
+               <td>A</td>
+               <td><i class="has-text-danger fas fa-times-circle"></i></td>
+               <td>D-level requirements plus implement 2 of the Tableau prototypes in D3 version 5.</td>
+             </tr>
+           </tbody>
+         </table>
+
 
         <h2 id="about">About</h2>
 
