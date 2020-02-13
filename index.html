@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
+
+  <!-- HEAD -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Chaitrika Budamagunta - H1</title>
 
-    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
-    <!-- https://bulma.io/ -->
+    <!-- Load Bulma from CDN: https://bulma.io/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
 
     <!-- Load Font Awesome 5 (free) icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- Custom css stylesheet -->
+    <link href="style.css" rel="stylesheet" type="text/css">
   </head>
 
+
+  <!-- BODY -->
   <body>
 
   <!-- Page header -->
-  <!-- https://bulma.io/documentation/layout/hero/ -->
   <section class="hero is-dark is-bold">
     <div class="hero-body">
       <div class="container">
@@ -29,7 +34,6 @@
   <!-- End page header -->
 
   <!-- Page navigation -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
   <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
@@ -43,13 +47,13 @@
       <div id="main-menu" class="navbar-menu has-text-weight-medium">
         <!-- Left navbar items -->
         <div class="navbar-start">
-          <a class="navbar-item" href="#visualizations" title="Visualizations">
-            <span class="icon"><i class="fas fa-table"></i></span>
-            <span>Visualizations</span>
-          </a>
           <a class="navbar-item" href="#prototypes" title="Prototypes">
             <span class="icon"><i class="fas fa-table"></i></span>
             <span>Prototypes</span>
+          </a>
+          <a class="navbar-item" href="#visualizations" title="Visualizations">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Visualizations</span>
           </a>
         </div>
 
@@ -81,24 +85,42 @@
           Air Traffic Passenger Statistics
         </p>
 
-        <h2 id="visualizations">Visualizations</h2>
-
+        <!-- PROTOTYPES -->
         <h2 id="prototypes">Prototypes</h2>
         <p><img src="Proto1.png"></p>
         <p><img src="Proto2.png"></p>
         <p><img src="Proto3.png"></p>
 
-         <h2 id="grade">Grade</h2>
 
-         <!-- TODO: Remove custom style if no longer needed -->
-         <style>
-           table.grades tbody tr td:nth-child(1),
-           table.grades tbody tr td:nth-child(2) {
-             text-align: center;
-           }
-         </style>
+        <!-- Include d3.js v5 -->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <!-- Include d3.js modules -->
+        <script src="https://d3js.org/d3-array.v2.min.js"></script>
 
-         <!-- https://bulma.io/documentation/elements/table/ -->
+        <!-- Include custom javascript -->
+        <script src="data.js"></script>
+        <script src="chart.js"></script>
+
+        <!-- Create Visualizations -->
+        <script type="text/javascript">
+
+          let chart = {};
+
+          d3.csv("Air_Traffic_Passenger_Statistics - people - month.csv").then(
+            function(data) {
+              drawBarChart(data);
+            }
+          )
+
+        </script>
+
+        <!-- VISUALIZATIONS -->
+        <h2 id="visualizations">Visualizations</h2>
+        <svg id="Vis1"></svg>
+
+
+        <!-- GRADE -->
+        <h2 id="grade">Grade</h2>
          <table class="table is-hoverable is-bordered grades">
            <thead>
              <tr>
@@ -137,10 +159,8 @@
          </table>
 
 
+         <!-- GRADE -->
         <h2 id="about">About</h2>
-
-        <!-- Profile box -->
-        <!-- https://bulma.io/documentation/layout/media-object/ -->
         <article class="media">
           <figure class="media-left">
             <p class="image is-128x128"><img class="is-rounded" src="chaitrika.jpeg"></p>
@@ -159,9 +179,7 @@
                 My name is Chay, I am a computer science major and a theater minor, and I love finding ways to blend tech and art.
               </p>
 
-              <!-- https://bulma.io/documentation/elements/tag/ -->
               <div class="heading">Skills</div>
-
               <div class="tags">
                 <span class="tag">Python</span>
                 <span class="tag">C</span>
@@ -181,7 +199,6 @@
   </section>
 
   <!-- Page footer -->
-  <!-- https://bulma.io/documentation/layout/footer/ -->
   <footer class="footer">
     <div class="content has-text-centered is-size-7">
       <p>
@@ -209,7 +226,6 @@
   <!-- End page footer -->
 
   <!-- Mobile menu responsiveness -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
