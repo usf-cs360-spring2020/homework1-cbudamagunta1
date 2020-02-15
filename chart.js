@@ -1,13 +1,10 @@
 //Create the visualization
 //Code from in class Letter Count Bar Chart example
 
-
 /*
 * Draw the Scatter Chart
 */
-//let drawScatterChart = function(data) {
-
-  //let passengers = parseData(data);
+let drawScatterChart = function() {
 
   let svg = d3.select("body").select("svg#Vis1");
 
@@ -22,8 +19,8 @@
 
   const margin = {
     top: 15,
-    bottom: 30,
-    left: 40,
+    bottom: 50,
+    left: 65,
     right: 35
   };
 
@@ -66,13 +63,54 @@
 
   xTitle.attr('x', xMiddle);
   xTitle.attr('y', height);
-  xTitle.attr('dy', -4);
+  xTitle.attr('dy', -8);
   xTitle.attr('text-anchor', 'middle');
 
 
+  const yTitleGroup = svg.append('g');
+  yTitleGroup.attr('transform', translate(4, yMiddle));
 
-//}
+  const yTitle = yTitleGroup.append('text')
+    .attr('class', 'axis-title')
+    .text('Passenger Count');
 
+  yTitle.attr('x', 0);
+  yTitle.attr('y', 0);
+
+  yTitle.attr('dy', 15);
+  yTitle.attr('text-anchor', 'middle');
+  yTitle.attr('transform', 'rotate(-90)');
+
+
+  d3.csv("Air_Traffic_Passenger_Statistics - price.csv", parseData).then(
+    function() {
+
+    }
+  )
+
+}
+
+/*
+* Draw the Area Chart
+*/
+//let drawAreaChart = function() {
+
+
+drawScatterChart();
+//drawAreaChart();
+
+/*
+ * Modeled from convert function in bubble.js example:
+ * converts values as necessary and discards unused columns
+ */
+function parseData(row){
+  let keep = {};
+
+  keep.passengers = row["Passenger Count"];
+  keep.price = row["Price Category Code"];
+  keep.region = row["GEO Region"];
+
+}
 
 /*
  * From bubble.js example:
