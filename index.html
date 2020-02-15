@@ -89,34 +89,35 @@
         <h2 id="prototypes">Prototypes</h2>
         <p><img src="Proto1.png"></p>
         <p><img src="Proto2.png"></p>
-        <p><img src="Proto3.png"></p>
+        <p><img src="Proto4.png"></p>
 
+
+        <!-- VISUALIZATIONS -->
+        <h2 id="visualizations">Visualizations</h2>
 
         <!-- Include d3.js v5 -->
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <!-- Include d3.js modules -->
         <script src="https://d3js.org/d3-array.v2.min.js"></script>
 
-        <!-- Include custom javascript -->
-        <script src="data.js"></script>
-        <script src="chart.js"></script>
-
-        <!-- Create Visualizations -->
+        <!-- Create Visualizations --><!--
         <script type="text/javascript">
 
           let chart = {};
 
-          d3.csv("Air_Traffic_Passenger_Statistics - people - month.csv").then(
+          d3.csv("Air_Traffic_Passenger_Statistics - price.csv").then(
             function(data) {
-              drawBarChart(data);
+              drawScatterChart(data);
             }
           )
 
-        </script>
+        </script>-->
 
-        <!-- VISUALIZATIONS -->
-        <h2 id="visualizations">Visualizations</h2>
+        <h3>Volume of Passengers in each Price Category by Region</h3>
         <svg id="Vis1"></svg>
+        <p id="caption"><strong>Chaitrika Budamagunta</strong><br>
+          Air Traffic Passanger Statistics Dataset from DataSF <br>
+          <strong>Source:</strong> https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/data</p>
 
 
         <!-- GRADE -->
@@ -243,6 +244,11 @@
   });
   </script>
   <!-- End mobile menu responsiveness -->
+
+  <!-- Include custom javascript -->
+  <script src="data.js"></script>
+  <script src="chart.js"></script>
+
   </body>
 
 </html>

@@ -11,5 +11,9 @@ svg {
   height: 500px;
 
   border: 1px solid black;
-  background-color: white;
+}
+
+p#caption {
+  font-size: 12px;
+
 }

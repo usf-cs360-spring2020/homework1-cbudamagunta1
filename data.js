@@ -7,3 +7,12 @@ let parseData = function(data) {
 
 
 }
+
+
+
+
+
+
+//START WITH SCATTER Plot
+//MAKE IT WITH COLORS AND NOT TWO COLUMNS
+//DO AREA CHART NEXT, IT IS SIMILAR TO SCATTER
