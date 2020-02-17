@@ -44,9 +44,9 @@ let regionScale = d3.scaleBand()
   .rangeRound([0, plotWidth])
   .paddingInner(0.1);
 
-let radiusScale = d3.scaleSqrt()
-  .range([1,2])
-  .domain([0,4000000000]);
+// let radiusScale = d3.scaleSqrt()
+//   .range([1,2])
+//   .domain([0,4000000000]);
 
 
 /* AXES */
@@ -93,6 +93,55 @@ yTitle.attr('dy', 15);
 yTitle.attr('text-anchor', 'middle');
 yTitle.attr('transform', 'rotate(-90)');
 
+
+/* LEGEND */
+
+const legendGroup = svg.append('g').attr('id', 'legend');
+legendGroup.attr('transform', translate(margin.left + 30, 40));
+const title = legendGroup.append('text')
+    .attr('class', 'legend-title')
+    .text('Price Category Code');
+
+title.attr('dy', 12);
+
+const legendbox = legendGroup.append('rect')
+  .attr('x', 0)
+  .attr('y', 20)
+  .attr('width', 140)
+  .attr('height', 75)
+  .style('stroke', 'black')
+  .style('fill', 'none');
+
+legendGroup.append('rect')
+  .attr('x', 10)
+  .attr('y', 30)
+  .attr('width', 20)
+  .attr('height', 20)
+  .style('stroke', 'black')
+  .style('fill', '6a9e59');
+
+legendGroup.append('text')
+    .attr('class', 'legend-title')
+    .attr('x', 40)
+    .attr('y', 45)
+    .text('Low Fare');
+
+legendGroup.append('rect')
+  .attr('x', 10)
+  .attr('y', 60)
+  .attr('width', 20)
+  .attr('height', 20)
+  .style('stroke', 'black')
+  .style('fill', '5679a3');
+
+legendGroup.append('text')
+    .attr('class', 'legend-title')
+    .attr('x', 40)
+    .attr('y', 75)
+    .text('Other');
+
+
+/* LOAD THE DATA */
 d3.csv("Air_Traffic_Passenger_Statistics - price.csv", parseData).then(drawScatterChart);
 
 /*
@@ -114,8 +163,8 @@ function drawScatterChart(data) {
       .attr("cy", d => countScale(d[1]))
       .attr("width", regionScale.bandwidth())
       .attr("height", d => plotHeight - countScale(d[1]))
-      .attr("r", 6)
-      .style("fill", "olive");
+      .attr("r", 8)
+      .style("fill", "6a9e59");
 
   // Add scatter dots for other fare
   let pairsOther = Array.from(regionDataOther.entries());
@@ -129,8 +178,8 @@ function drawScatterChart(data) {
       .attr("cy", d => countScale(d[1]))
       .attr("width", regionScale.bandwidth())
       .attr("height", d => plotHeight - countScale(d[1]))
-      .attr("r", 6)
-      .style("fill", "blue");
+      .attr("r", 8)
+      .style("fill", "5679a3");
 }
 
 /*
