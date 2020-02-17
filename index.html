@@ -100,24 +100,16 @@
         <!-- Include d3.js modules -->
         <script src="https://d3js.org/d3-array.v2.min.js"></script>
 
-        <!-- Create Visualizations --><!--
-        <script type="text/javascript">
-
-          let chart = {};
-
-          d3.csv("Air_Traffic_Passenger_Statistics - price.csv").then(
-            function(data) {
-              drawScatterChart(data);
-            }
-          )
-
-        </script>-->
-
+        <!-- Create Visualizations -->
         <h3>Volume of Passengers in each Price Category by Region</h3>
         <svg id="Vis1"></svg>
         <p id="caption"><strong>Chaitrika Budamagunta</strong><br>
           Air Traffic Passanger Statistics Dataset from DataSF <br>
           <strong>Source:</strong> https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/data</p>
+
+
+        <!-- Include custom javascript -->
+        <script src="scatterChart.js"></script>
 
 
         <!-- GRADE -->
@@ -148,13 +140,13 @@
              <tr>
                <td>B</td>
                <td><i class="has-text-danger far fa-check-circle"></i></td>
-               <td>D-level requirements plus implement 1 of the Tableau prototypes in D3 version 5.</td>
+               <td>C-level requirements plus implement 1 of the Tableau prototypes in D3 version 5.</td>
              </tr>
 
              <tr>
                <td>A</td>
                <td><i class="has-text-danger fas fa-times-circle"></i></td>
-               <td>D-level requirements plus implement 2 of the Tableau prototypes in D3 version 5.</td>
+               <td>C-level requirements plus implement 2 of the Tableau prototypes in D3 version 5.</td>
              </tr>
            </tbody>
          </table>
@@ -244,10 +236,6 @@
   });
   </script>
   <!-- End mobile menu responsiveness -->
-
-  <!-- Include custom javascript -->
-  <script src="data.js"></script>
-  <script src="chart.js"></script>
 
   </body>
 
