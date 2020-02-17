@@ -82,39 +82,35 @@
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
-        <h1 class="title" id="data">
-          Data
+        <h1 class="title" id="prototypes">
+          Prototypes
         </h1>
 
-        <p>These visualizations were creating using the <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/data">Air Traffic Passenger Statistics dataset</a> from DataSF.</p>
-        <p><strong>Date Created</strong><br>
-            April 19, 2016</p>
-        <p><strong>Last Updated</strong><br>
-            December 30, 2019</p>
+        <h2>Prototype One</h2>
+        <p>This visualization looks at passenger count per month in 2019, and compares the number of international versus domestic passengers.
+          The length of the bar represents the passenger count, with the stacked bar chart meaning the international passengers must be counted
+          from the top of the domestic passengers bar to the top. To create this prototype, the original datatset was grouped by Activity Period,
+          GEO Summary, and Passenger Count, using filters provided by the dataset website interface. Using this visualization, it can be seen that
+          there is a higher spike of travelers during the summer months (June - August), but also it can be seen that there are always more domestic
+          travellers than international ones.</p>
+        <p><img src="Proto1.png"></p>
 
-        <p>The original dataset is 21.2K rows, and was accessed for this assignment from January to February 2019.</p>
+        <h2>Prototype Two</h2>
+        <p>This visualization compares the volume of passengers travelling to each region over the course of 2019. The peaks within the colored area
+        indicate number of passengers for that specific region. The data for this prototype was gathered by using the dataset website interface to
+        group the original dataset by GEO region and Passenger Count, restricting the Activity Period to only include 2019. Using this visualization,
+        it can be seen that the largest number of passengers by far travelled to/within the United States, but the number of travellers between Asia
+        and Europe was comparably close, showcasing them as the next two most popular travel spots.</p>
+        <p><img src="Proto2.png"></p>
 
-        <blockquote>
-          <p>
-            "License: <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication and License</a>"
-          </p>
-          <cite><a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">Air Traffic Passenger Statistics dataset</a></cite>
-        </blockquote>
-
-        <p>There are 12 different columns in this dataset. Each visualization used a different perspective of the original dataset.
-          The ones used for these visualizations include:</p>
-
-        <ol>
-          <li><strong>Passenger Count:</strong> Number of passengers, </li>
-
-          <li><strong>GEO Region:</strong> Plain text regions.</li>
-
-          <li><strong>Activity Period:</strong> Number deliminating date.</li>
-
-          <li><strong>Price Category Code</strong> Plain text indication of low fare or other.</li>
-
-          <li><strong>GEO Summary</strong> Plain text indication of domestic or international travel.</li>
-        </ol>
+        <h2>Prototype Three</h2>
+        <p>This visualization showcases the number of passengers who travelled within each price category for each region. The Low Fare and Other Fare
+          tickets are represented with different colors, comparing the numbers for the same region. This prototype was created by grouping the original
+          dataset by Passenger Count, GEO Region, and Price Category Code, using the dataset website interface. Using this visualization, it can ba seen
+          that the United States was the region that had the largest discrepancy in the number of Low Fare and Other tickets, while the other regions did
+          not have as big of a range.
+        </p>
+        <p><img src="Proto4.png"></p>
       </div>
       <!-- End page content -->
     </div>

@@ -82,39 +82,54 @@
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
-        <h1 class="title" id="data">
-          Data
+        <h1 class="title" id="grade">
+          Grade
         </h1>
 
-        <p>These visualizations were creating using the <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/data">Air Traffic Passenger Statistics dataset</a> from DataSF.</p>
-        <p><strong>Date Created</strong><br>
-            April 19, 2016</p>
-        <p><strong>Last Updated</strong><br>
-            December 30, 2019</p>
+         <table class="table is-hoverable is-bordered grades">
+           <thead>
+             <tr>
+               <th>Letter</th>
+               <th>Done?</th>
+               <th>Description</th>
+             </tr>
+           </thead>
 
-        <p>The original dataset is 21.2K rows, and was accessed for this assignment from January to February 2019.</p>
+           <tbody>
+             <tr>
+               <td>C</td>
+               <td><i class="has-text-success fas fa-check-circle"></i></td>
+               <td>Prototype 3 unique visualizations using Tableau Desktop<br>
+                   Use 3 different encodings: Scatter Plot, Vertical Bar Chart, Area Chart<br>
+                   Use 3 different perspectives of the data<br>
+                   Use color to encode data in one visualization<br>
+                   Use title and axis labels<br>
+                   Include a caption with every visualization<br>
+                   Size static visualization images properly
+               </td>
+             </tr>
 
-        <blockquote>
-          <p>
-            "License: <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication and License</a>"
-          </p>
-          <cite><a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">Air Traffic Passenger Statistics dataset</a></cite>
-        </blockquote>
+             <tr>
+               <td>B</td>
+               <td><i class="has-text-success fas fa-check-circle"></i></td>
+               <td>C-level requirements<br>
+                   Implement one of the Tableau prototypes in D3 version 5<br>
+                   Use same visualization technique and data encoding (Scatter Plot with color)<br>
+                   Include captions, titles, and legends found in Tableau prototype<br>
+                   Match as much of design as possible, including colors and tick labels
+               </td>
+             </tr>
 
-        <p>There are 12 different columns in this dataset. Each visualization used a different perspective of the original dataset.
-          The ones used for these visualizations include:</p>
+             <tr>
+               <td>A</td>
+               <td><i class="has-text-danger fas fa-times-circle"></i></td>
+               <td>C-level requirements plus implement 2 of the Tableau prototypes in D3 version 5.</td>
+             </tr>
+           </tbody>
+         </table>
 
-        <ol>
-          <li><strong>Passenger Count:</strong> Number of passengers, </li>
 
-          <li><strong>GEO Region:</strong> Plain text regions.</li>
 
-          <li><strong>Activity Period:</strong> Number deliminating date.</li>
-
-          <li><strong>Price Category Code</strong> Plain text indication of low fare or other.</li>
-
-          <li><strong>GEO Summary</strong> Plain text indication of domestic or international travel.</li>
-        </ol>
       </div>
       <!-- End page content -->
     </div>
