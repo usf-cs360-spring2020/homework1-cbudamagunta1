@@ -1,109 +1,139 @@
-// let regions = ["Asia", "Australia / Oceania", "Canada", "Central America",
-//   "Europe", "Mexico", "Middle East", "South America", "US"];
+/* ONLY UPDATE WHAT IS NOT REPEATED FROM SCATTERCHART.JS */
 
-let passengerMap = new Map();
+let passengerCount = new Map();
+
 for (let m = 0; m < regions.length; m++) {
-  passengerMap.set(regions[m], 0);
+  passengerCount.set(regions[m], 0);
 }
 
-let svg2 = d3.select("body").select("svg#Vis2");
-const plot2 = svg.append("g").attr("id", "plot2");
+let svgArea = d3.select("body").select("svg#Vis2");
+const plotArea = svgArea.append("g").attr("id", "plotArea");
 
-plot2.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+plotArea.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 /* SCALES */
 
-let bounds2 = svg2.node().getBoundingClientRect();
-let plotWidth2 = bounds2.width - margin.right - margin.left;
-let plotHeight2 = bounds2.height - margin.top - margin.bottom;
+let countMinArea = 0;
+let countMaxArea = 30000000;
 
-let countMin2 = 0;
-let countMax2 = 30000000;
-
-let countScale2 = d3.scaleLinear()
-    .domain([countMin2, countMax2])
-    .range([plotHeight2, 0])
+let countScaleArea = d3.scaleLinear()
+    .domain([countMinArea, countMaxArea])
+    .range([plotHeight, 0])
     .nice();
-
-let regionScale2 = d3.scaleBand()
-  .domain(regions)
-  .rangeRound([0, plotWidth2])
-  .paddingInner(0.1);
 
 
 /* AXES */
 
-let xGroup2 = plot2.append("g").attr("id", "x-axis").attr('class', 'axis');
-let yGroup2 = plot2.append("g").attr("id", "y-axis").attr('class', 'axis');
+let xGroupArea = plotArea.append("g").attr("id", "x-axis").attr('class', 'axis');
+let yGroupArea = plotArea.append("g").attr("id", "y-axis").attr('class', 'axis');
 
-let xAxis2 = d3.axisBottom(regionScale2);
-let yAxis2 = d3.axisLeft(countScale2);
+let xAxisArea = d3.axisBottom(regionScale);
+let yAxisArea = d3.axisLeft(countScaleArea);
 
-yAxis2.ticks(7, 's').tickSizeOuter(0);
+yAxisArea.ticks(7, 's').tickSizeOuter(0);
 
-xGroup2.attr("transform", "translate(0," + plotHeight2 + ")");
-xGroup2.call(xAxis2);
-yGroup2.call(yAxis2);
+xGroupArea.attr("transform", "translate(0," + plotHeight + ")");
+xGroupArea.call(xAxisArea);
+yGroupArea.call(yAxisArea);
 
-const gridAxis2 = d3.axisLeft(countScale2).tickSize(-plotWidth2).tickFormat('').ticks(5);
-let gridGroup2 = plot2.append("g").attr("id", "grid-axis")
+const gridAxisArea = d3.axisLeft(countScaleArea).tickSize(-plotWidth).tickFormat('').ticks(5);
+let gridGroupArea = plotArea.append("g").attr("id", "grid-axis")
   .attr('class', 'axis')
-  .call(gridAxis2);
+  .call(gridAxisArea);
 
 
 /* AXIS TITLES */
 
-const xMiddle2 = margin.left + midpoint(regionScale2.range());
-const yMiddle2 = margin.top + midpoint(countScale2.range());
+const yMiddleArea = margin.top + midpoint(countScaleArea.range());
 
-const xTitle2 = svg2.append('text')
+const xTitleArea = svgArea.append('text')
   .attr('class', 'axis-title')
   .text('GEO Region');
 
-xTitle2.attr('x', xMiddle2);
-xTitle2.attr('y', 30);
-xTitle2.attr('dy', -8);
-xTitle2.attr('text-anchor', 'middle');
+xTitleArea.attr('x', xMiddle);
+xTitleArea.attr('y', 30);
+xTitleArea.attr('dy', -8);
+xTitleArea.attr('text-anchor', 'middle');
 
-const yTitleGroup2 = svg2.append('g');
-yTitleGroup2.attr('transform', translate(4, yMiddle2));
+const yTitleGroupArea = svgArea.append('g');
+yTitleGroupArea.attr('transform', translate(4, yMiddleArea));
 
-const yTitle2 = yTitleGroup2.append('text')
+const yTitleArea = yTitleGroupArea.append('text')
   .attr('class', 'axis-title')
   .text('Passenger Count');
 
-yTitle2.attr('x', 0);
-yTitle2.attr('y', 0);
+yTitleArea.attr('x', 0);
+yTitleArea.attr('y', 0);
 
-yTitle2.attr('dy', 15);
-yTitle2.attr('text-anchor', 'middle');
-yTitle2.attr('transform', 'rotate(-90)');
+yTitleArea.attr('dy', 15);
+yTitleArea.attr('text-anchor', 'middle');
+yTitleArea.attr('transform', 'rotate(-90)');
 
 
 /* LOAD THE DATA */
 d3.csv("Air_Traffic_Passenger_Statistics - region - people.csv", parseAreaData).then(drawAreaChart);
 
+
 /*
-* Draw the Scatter Chart
+* Draw the Area Chart
 */
 function drawAreaChart(data) {
 
-  // const group = plot2.append('g').attr('id', 'area');
-  //
-  // // Add scatter dots for low fare
-  // let areaPairs = Array.from(passengerMap.entries());
-  //
-  // let bars = plot2.selectAll("rect")
-  //     .data(areaPairs, function(d) { return d[0]; });
-  //
-  //   bars.enter().append("rect")
-  //     .attr("class", "bar")
-  //     .attr("width", regionScale2.bandwidth())
-  //     .attr("x", d => regionScale2(d[0]))
-  //     .attr("y", d => countScale2(d[1]))
-  //     .attr("height", d => plotHeight2 - countScale2(d[1]));
+  const groupArea = plotArea.append('g').attr('id', 'area');
+
+  // Add scatter dots for low fare
+  //let pairs = Array.from(passengerCount.entries());
+
+  const areaPoints = groupArea
+    .data(data)
+    .append("path")
+      .attr('d', d3.area()
+
+        .x(function(d) {
+          console.log(d[0]);
+          return (regionScale(d[0]) + (regionScale.bandwidth() / 2)) })
+
+        .y1(function(d) {
+
+
+          console.log(d[1]);
+          return countScaleArea(d[1]) })
+
+
+        .y0(countScaleArea(0))
+      )
+      .style("fill", "dd9db3");
+
+  // const areaPoints = groupArea
+  //   .selectAll("rect")
+  //   .data(pairs, function(d) {
+  //     console.log("pair:" + d[0] + " " + d[1]);
+  //     return d[0];
+  //   })
+  //   .enter()
+  //   .append("circle")
+  //     .attr("cx", d => (regionScale(d[0]) + (regionScale.bandwidth() / 2)))
+  //     .attr("cy", d => countScaleArea(d[1]))
+  //     .attr("width", regionScale.bandwidth())
+  //     .attr("height", d => plotHeight - countScaleArea(d[1]))
+  //     .attr("r", 8)
+  //     .style("fill", "dd9db3");
+
+
+//       // prepare a helper function
+// var curveFunc = d3.area()
+//   .x(function(d) { return d.x })      // Position of both line breaks on the X axis
+//   .y1(function(d) { return d.y })     // Y position of top line breaks
+//   .y0(200)                            // Y position of bottom line breaks (200 = bottom of svg area)
+//
+// // Add the path using this helper function
+// svg.append('path')
+//   .attr('d', curveFunc(data))
+//   .attr('stroke', 'black')
+//   .attr('fill', '#69b3a2');
 
 }
+
 
 /*
  * Modeled from convert function in bubble.js example:
@@ -115,27 +145,11 @@ function parseAreaData(row){
   keep.passengers = parseInt(row["Passenger Count"]);
   keep.region = row["GEO Region"];
 
-  if(passengerMap.has(keep.region)){
-    passengerMap.set(keep.region, passengerMap.get(keep.region) + keep.passengers);
+  if(passengerCount.has(keep.region)){
+    passengerCount.set(keep.region, passengerCount.get(keep.region) + keep.passengers);
   } else {
-    passengerMap.set(keep.region, keep.passengers);
+    passengerCount.set(keep.region, keep.passengers);
   }
 
   return keep;
-}
-
-/*
- * From bubble.js example:
- * calculates the midpoint of a range given as a 2 element array
- */
-function midpoint(range) {
-  return range[0] + (range[1] - range[0]) / 2.0;
-}
-
-/*
- * From bubble.js example:
- * returns a translate string for the transform attribute
- */
-function translate(x, y) {
-  return 'translate(' + String(x) + ',' + String(y) + ')';
 }

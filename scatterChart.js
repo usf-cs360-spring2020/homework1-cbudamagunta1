@@ -139,7 +139,7 @@ legendGroup.append('text')
 
 
 /* LOAD THE DATA */
-d3.csv("Air_Traffic_Passenger_Statistics - price.csv", parseData).then(drawScatterChart);
+d3.csv("Air_Traffic_Passenger_Statistics - price.csv", parseScatterData).then(drawScatterChart);
 
 /*
 * Draw the Scatter Chart
@@ -183,7 +183,7 @@ function drawScatterChart(data) {
  * Modeled from convert function in bubble.js example:
  * converts values as necessary and discards unused columns
  */
-function parseData(row){
+function parseScatterData(row){
   let keep = {};
 
   keep.passengers = parseInt(row["Passenger Count"]);
