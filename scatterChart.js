@@ -14,10 +14,10 @@ for (let k = 0; k < regions.length; k++) {
 }
 
 const margin = {
-  top: 15,
-  bottom: 50,
-  left: 65,
-  right: 35
+  top: 40,
+  bottom: 40,
+  left: 70,
+  right: 30
 };
 
 let svg = d3.select("body").select("svg#Vis1");
@@ -44,10 +44,6 @@ let regionScale = d3.scaleBand()
   .rangeRound([0, plotWidth])
   .paddingInner(0.1);
 
-// let radiusScale = d3.scaleSqrt()
-//   .range([1,2])
-//   .domain([0,4000000000]);
-
 
 /* AXES */
 
@@ -63,6 +59,11 @@ xGroup.attr("transform", "translate(0," + plotHeight + ")");
 xGroup.call(xAxis);
 yGroup.call(yAxis);
 
+const gridAxis = d3.axisLeft(countScale).tickSize(-plotWidth).tickFormat('').ticks(5);
+let gridGroup = plot.append("g").attr("id", "grid-axis")
+  .attr('class', 'axis')
+  .call(gridAxis);
+
 
 /* AXIS TITLES */
 
@@ -74,10 +75,9 @@ const xTitle = svg.append('text')
   .text('GEO Region');
 
 xTitle.attr('x', xMiddle);
-xTitle.attr('y', height);
+xTitle.attr('y', 30);
 xTitle.attr('dy', -8);
 xTitle.attr('text-anchor', 'middle');
-
 
 const yTitleGroup = svg.append('g');
 yTitleGroup.attr('transform', translate(4, yMiddle));
@@ -97,7 +97,7 @@ yTitle.attr('transform', 'rotate(-90)');
 /* LEGEND */
 
 const legendGroup = svg.append('g').attr('id', 'legend');
-legendGroup.attr('transform', translate(margin.left + 30, 40));
+legendGroup.attr('transform', translate(margin.left + 40, 50));
 const title = legendGroup.append('text')
     .attr('class', 'legend-title')
     .text('Price Category Code');
@@ -109,7 +109,6 @@ const legendbox = legendGroup.append('rect')
   .attr('y', 20)
   .attr('width', 140)
   .attr('height', 75)
-  .style('stroke', 'black')
   .style('fill', 'none');
 
 legendGroup.append('rect')
@@ -117,7 +116,6 @@ legendGroup.append('rect')
   .attr('y', 30)
   .attr('width', 20)
   .attr('height', 20)
-  .style('stroke', 'black')
   .style('fill', '6a9e59');
 
 legendGroup.append('text')
@@ -131,7 +129,6 @@ legendGroup.append('rect')
   .attr('y', 60)
   .attr('width', 20)
   .attr('height', 20)
-  .style('stroke', 'black')
   .style('fill', '5679a3');
 
 legendGroup.append('text')
@@ -155,7 +152,7 @@ function drawScatterChart(data) {
   let pairsLow = Array.from(regionDataLow.entries());
 
   const scatterLow = group
-    .selectAll("dot")
+    .selectAll("rect")
     .data(pairsLow, function(d) { return d[0]; })
     .enter()
     .append("circle")
