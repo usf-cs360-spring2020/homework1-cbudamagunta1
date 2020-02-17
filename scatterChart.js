@@ -1,12 +1,17 @@
 const width = 960;
 const height = 500;
 
-let regions = ["Asia", "Australia/Oceania", "Canada", "Central America",
-  "Europe", "Mexico", "Middle East", "South American", "US"];
+let regions = ["Asia", "Australia / Oceania", "Canada", "Central America",
+  "Europe", "Mexico", "Middle East", "South America", "US"];
 
 //To keep sum of passengers per region
 let regionDataLow = new Map();
 let regionDataOther = new Map();
+
+for (let k = 0; k < regions.length; k++) {
+  regionDataLow.set(regions[k], 0);
+  regionDataOther.set(regions[k], 0);
+}
 
 const margin = {
   top: 15,
@@ -97,33 +102,6 @@ function drawScatterChart(data) {
 
   const group = plot.append('g').attr('id', 'scatter');
 
-  // const scatter = group.selectAll('circle')
-  //   .data(data)
-  //   .enter()
-  //   .append('circle');
-  //
-  //   scatter.attr('cx', regionScale(d.region));
-  //   scatter.attr('cy', d => countScale(d.passengers));
-  //   scatter.attr('r',  1.5);
-  //
-  //   scatter.style('stroke', 'white');
-    //scatter.style('fill', d => scales.fill(d.trend));
-
-    // .attr("cx", function (d) { return x(d.GrLivArea); } )
-    //   .attr("cy", function (d) { return y(d.SalePrice); } )
-    //   .attr("r", 1.5)
-    //   .style("fill", "#69b3a2");
-
-    // scatter.attr("width", regionScale.bandwidth())
-    //   .attr("x", d => regionScale(d.region));
-    //
-    // scatter.attr("y", d => countScale(d.passengers))
-    //   .attr("height", d => plotHeight - countScale(d.passengers));
-    //
-    // scatter.attr("r", d => scales.radiusScale(2))
-    //   .style("fill", "#69b3a2");
-
-
   // Add scatter dots for low fare
   let pairsLow = Array.from(regionDataLow.entries());
 
@@ -132,49 +110,27 @@ function drawScatterChart(data) {
     .data(pairsLow, function(d) { return d[0]; })
     .enter()
     .append("circle")
-      // .attr("cx", d => regionScale(d.region))
-      // .attr("cy", d => countScale(d.passengers))
-
-      .attr("cx", function (d) {
-        console.log("x:", d[0]);
-        return regionScale(d[0]);
-      } )
+      .attr("cx", d => regionScale(d[0]))
+      .attr("cy", d => countScale(d[1]))
       .attr("width", regionScale.bandwidth())
-      .attr("cy", function (d) {
-        console.log("y:", d[1]);
-        return countScale(d[1]);
-      } )
       .attr("height", d => plotHeight - countScale(d[1]))
-
       .attr("r", 6)
       .style("fill", "olive");
 
+  // Add scatter dots for other fare
+  let pairsOther = Array.from(regionDataOther.entries());
 
-
-    // Add scatter dots for other fare
-    let pairsOther = Array.from(regionDataOther.entries());
-
-    const scatterOther = group
-      .selectAll("dot")
-      .data(pairsOther, function(d) { return d[0]; })
-      .enter()
-      .append("circle")
-        // .attr("cx", d => regionScale(d.region))
-        // .attr("cy", d => countScale(d.passengers))
-
-        .attr("cx", function (d) {
-          console.log("x:", d[0]);
-          return regionScale(d[0]);
-        } )
-        .attr("width", regionScale.bandwidth())
-        .attr("cy", function (d) {
-          console.log("y:", d[1]);
-          return countScale(d[1]);
-        } )
-        .attr("height", d => plotHeight - countScale(d[1]))
-        .attr("r", 6)
-        .style("fill", "blue");
-
+  const scatterOther = group
+    .selectAll("dot")
+    .data(pairsOther, function(d) { return d[0]; })
+    .enter()
+    .append("circle")
+      .attr("cx", d => regionScale(d[0]))
+      .attr("cy", d => countScale(d[1]))
+      .attr("width", regionScale.bandwidth())
+      .attr("height", d => plotHeight - countScale(d[1]))
+      .attr("r", 6)
+      .style("fill", "blue");
 }
 
 /*
