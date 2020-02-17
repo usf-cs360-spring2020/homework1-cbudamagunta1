@@ -42,7 +42,7 @@ let countScale = d3.scaleLinear()
 let regionScale = d3.scaleBand()
   .domain(regions)
   .rangeRound([0, plotWidth])
-  .paddingInner(0, 1);
+  .paddingInner(0.1);
 
 let radiusScale = d3.scaleSqrt()
   .range([1,2])
@@ -110,7 +110,7 @@ function drawScatterChart(data) {
     .data(pairsLow, function(d) { return d[0]; })
     .enter()
     .append("circle")
-      .attr("cx", d => regionScale(d[0]))
+      .attr("cx", d => (regionScale(d[0]) + (regionScale.bandwidth() / 2)))
       .attr("cy", d => countScale(d[1]))
       .attr("width", regionScale.bandwidth())
       .attr("height", d => plotHeight - countScale(d[1]))
@@ -125,7 +125,7 @@ function drawScatterChart(data) {
     .data(pairsOther, function(d) { return d[0]; })
     .enter()
     .append("circle")
-      .attr("cx", d => regionScale(d[0]))
+      .attr("cx", d => (regionScale(d[0]) + (regionScale.bandwidth() / 2)))
       .attr("cy", d => countScale(d[1]))
       .attr("width", regionScale.bandwidth())
       .attr("height", d => plotHeight - countScale(d[1]))
