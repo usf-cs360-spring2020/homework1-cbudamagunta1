@@ -14,7 +14,7 @@ plotArea.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 /* SCALES */
 
 let countMinArea = 0;
-let countMaxArea = 30000000;
+let countMaxArea = 32000000;
 
 let countScaleArea = d3.scaleLinear()
     .domain([countMinArea, countMaxArea])
@@ -82,56 +82,21 @@ function drawAreaChart(data) {
   const groupArea = plotArea.append('g').attr('id', 'area');
 
   // Add scatter dots for low fare
-  //let pairs = Array.from(passengerCount.entries());
+  let pairs = Array.from(passengerCount.entries());
 
   const areaPoints = groupArea
-    .data(data)
+    .datum(pairs)
     .append("path")
-      .attr('d', d3.area()
-
+      .attr("d", d3.area()
         .x(function(d) {
           console.log(d[0]);
           return (regionScale(d[0]) + (regionScale.bandwidth() / 2)) })
-
         .y1(function(d) {
-
-
           console.log(d[1]);
           return countScaleArea(d[1]) })
-
-
         .y0(countScaleArea(0))
       )
       .style("fill", "dd9db3");
-
-  // const areaPoints = groupArea
-  //   .selectAll("rect")
-  //   .data(pairs, function(d) {
-  //     console.log("pair:" + d[0] + " " + d[1]);
-  //     return d[0];
-  //   })
-  //   .enter()
-  //   .append("circle")
-  //     .attr("cx", d => (regionScale(d[0]) + (regionScale.bandwidth() / 2)))
-  //     .attr("cy", d => countScaleArea(d[1]))
-  //     .attr("width", regionScale.bandwidth())
-  //     .attr("height", d => plotHeight - countScaleArea(d[1]))
-  //     .attr("r", 8)
-  //     .style("fill", "dd9db3");
-
-
-//       // prepare a helper function
-// var curveFunc = d3.area()
-//   .x(function(d) { return d.x })      // Position of both line breaks on the X axis
-//   .y1(function(d) { return d.y })     // Y position of top line breaks
-//   .y0(200)                            // Y position of bottom line breaks (200 = bottom of svg area)
-//
-// // Add the path using this helper function
-// svg.append('path')
-//   .attr('d', curveFunc(data))
-//   .attr('stroke', 'black')
-//   .attr('fill', '#69b3a2');
-
 }
 
 
